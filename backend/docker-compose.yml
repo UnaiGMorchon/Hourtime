@@ -1,0 +1,31 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:5
+    container_name: mongo-hourtime
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: hourtime
+    ports:
+      - 27030:27017
+    volumes:
+      - ~/hourtimeData/mongo:/data/db
+    networks:
+      - hourtime
+  node:
+    build: .
+    container_name: node-hourtime
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo
+    networks:
+      - hourtime
+    volumes:
+      - ./:/usr/src/app
+      - exclude:/usr/src/app/node_modules/
+volumes:
+  exclude:
+networks:
+  hourtime:
