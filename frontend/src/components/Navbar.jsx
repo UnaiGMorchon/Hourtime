@@ -36,6 +36,7 @@ const NavbarComponent = () => {
           Predicciones
         </Link>
         <Link to='/horasmundo'>Horas del mundo</Link>
+        <Link to='/buscador'>buscador</Link>
       </div>
     </nav>
   );

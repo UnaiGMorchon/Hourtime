@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../components/Home";
 import Prediction from "../components/Prediction";
 import HorasMundo from "../components/HorasMundo";
+import Buscador from "../components/Buscador";
 import App from "../App";
 
 const Router = createBrowserRouter([
@@ -36,6 +37,16 @@ const Router = createBrowserRouter([
           {
             path: ":id",
             element: <HorasMundo />,
+          },
+        ],
+      },
+      {
+        path: "/buscador",
+        element: <Buscador />,
+        children: [
+          {
+            path: ":id",
+            element: <Buscador />,
           },
         ],
       },

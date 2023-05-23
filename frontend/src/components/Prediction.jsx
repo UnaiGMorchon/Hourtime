@@ -63,6 +63,7 @@ const Prediction = () => {
               <td>{prediction.tempmax}ºC</td>
               <td>{prediction.feelslike}ºC</td>
               <td>{prediction.precipprob}%</td>
+
               <td>{prediction.humidity}%</td>
               <td>{prediction.conditions}</td>
               <td>{prediction.description}</td>

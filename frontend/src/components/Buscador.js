@@ -9,6 +9,7 @@ const HorasMundo = () => {
   const [timeZone, setTimeZone] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [dayOfWeekName, setDayOfWeekName] = useState("");
+  const [predictions, setPredictions] = useState([]);
 
   useEffect(() => {
     const searchHours = async () => {
@@ -48,9 +49,23 @@ const HorasMundo = () => {
     return daysOfWeek[dayOfWeek];
   }
 
+  const api_key = "2SUUALUWUSYC86JWSJG272GDC";
+
+  const searchTemperature = () => {
+    fetch(
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchQuery}?unitGroup=metric&key=${api_key}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setPredictions(data.days);
+        setLocation(data.address);
+        setTimeZone(data.timezone);
+      });
+  };
+
   return (
     <div className='container'>
-      <h1>Horas del mundo</h1>
+      <h1>Horas del mundo | Predicción</h1>
       <h2>
         <input
           type='text'
@@ -59,6 +74,7 @@ const HorasMundo = () => {
           placeholder='Buscar ciudad o lugar'
         />
         <button onClick={() => setTimeZone(searchQuery)}>Buscar</button>
+        <button onClick={() => searchTemperature()}>Buscar Predicción</button>
       </h2>
       <h2>{location}</h2>
 
@@ -66,22 +82,46 @@ const HorasMundo = () => {
         <thead>
           <tr>
             <th>Fecha y Hora</th>
-            {/*  <th>Fecha y Hora UTC</th> */}
             <th>Zona horaria</th>
             <th>Día de la semana</th>
-            {/*  <th>Día del año</th>
-            <th>Semana del año</th> */}
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{hours.datetime}</td>
-            {/*  <td>{hours.utc_datetime}</td> */}
             <td>{hours.timezone}</td>
             <td>{dayOfWeekName}</td>
-            {/*   <td>{hours.day_of_year}</td>
-            <td>{hours.week_number}</td> */}
           </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Temperatura</th>
+            <th>Sensación térmica</th>
+            <th>Probabilidad de lluvia</th>
+            <th>Humedad</th>
+            <th>Condiciones</th>
+            <th>Descripción</th>
+            <th>Amanecer</th>
+            <th>Atardecer</th>
+          </tr>
+        </thead>
+        <tbody>
+          {predictions.map((prediction, index) => (
+            <tr key={index}>
+              <td>{prediction.datetime}</td>
+              <td>{prediction.tempmax}ºC</td>
+              <td>{prediction.feelslike}ºC</td>
+              <td>{prediction.precipprob}%</td>
+              <td>{prediction.humidity}%</td>
+              <td>{prediction.conditions}</td>
+              <td>{prediction.description}</td>
+              <td>{prediction.sunrise}</td>
+              <td>{prediction.sunset}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
