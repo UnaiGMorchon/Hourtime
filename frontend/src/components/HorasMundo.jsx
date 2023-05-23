@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const HorasMundo = () => {
-  const { locationCode } = useParams();
   const navigate = useNavigate();
   const [horas, setHoras] = useState([]);
   const [location, setLocation] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [timeZone, setTimeZone] = useState("Europe/Amsterdam");
+  const [timeZone, setTimeZone] = useState("Amsterdam");
+  const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://timeapi.io/api/Time/current/zone?timeZone=${timeZone}`,
+          /*             https://timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam
+           */ `https://timeapi.io/api/Time/current/zone?timeZone=Europe/${timeZone}`,
           {
             method: "GET",
             headers: {
@@ -24,6 +25,7 @@ const HorasMundo = () => {
         if (response.ok) {
           const data = await response.json();
           setHoras(data.hours);
+          setCurrentTime(data.currentDateTime);
         } else {
           console.error("Error:", response.status);
         }
@@ -48,6 +50,7 @@ const HorasMundo = () => {
         {/*  <button onClick={() => searchLocation()}>Buscar</button> */}
       </h2>
       <h2>{location}</h2>
+      <h2>Hora actual: {currentTime}</h2>
     </div>
   );
 };
