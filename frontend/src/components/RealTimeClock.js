@@ -17,7 +17,7 @@ const RealTimeClock = () => {
 
   return (
     <div>
-      <h1>Reloj en tiempo real</h1>
+      <h1>Hora actual</h1>
       <h2>{formattedTime}</h2>
     </div>
   );
