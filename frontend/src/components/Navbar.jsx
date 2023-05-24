@@ -37,6 +37,7 @@ const NavbarComponent = () => {
         </Link>
         <Link to='/horasmundo'>Horas del mundo</Link>
         <Link to='/buscador'>buscador</Link>
+        <Link to='/reloj'>reloj</Link>
       </div>
     </nav>
   );

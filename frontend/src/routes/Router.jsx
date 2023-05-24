@@ -4,6 +4,7 @@ import Prediction from "../components/Prediction";
 import HorasMundo from "../components/HorasMundo";
 import Buscador from "../components/Buscador";
 import App from "../App";
+import RealTimeClock from "../components/RealTimeClock";
 
 const Router = createBrowserRouter([
   {
@@ -47,6 +48,16 @@ const Router = createBrowserRouter([
           {
             path: ":id",
             element: <Buscador />,
+          },
+        ],
+      },
+      {
+        path: "/reloj",
+        element: <RealTimeClock />,
+        children: [
+          {
+            path: ":id",
+            element: <RealTimeClock />,
           },
         ],
       },

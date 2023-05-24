@@ -15,7 +15,7 @@ const HorasMundo = () => {
     const searchHours = async () => {
       try {
         const response = await fetch(
-          `http://worldtimeapi.org/api/timezone/Europe/${timeZone}`
+          `http://worldtimeapi.org/api/timezone/${timeZone}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -73,7 +73,7 @@ const HorasMundo = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder='Buscar ciudad o lugar'
         />
-        <button onClick={() => setTimeZone(searchQuery)}>Buscar</button>
+
         <button onClick={() => searchTemperature()}>Buscar Predicción</button>
       </h2>
       <h2>{location}</h2>
@@ -82,14 +82,14 @@ const HorasMundo = () => {
         <thead>
           <tr>
             <th>Fecha y Hora</th>
-            <th>Zona horaria</th>
+            {/* <th>Zona horaria</th> */}
             <th>Día de la semana</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{hours.datetime}</td>
-            <td>{hours.timezone}</td>
+            {/* <td>{hours.timezone}</td> */}
             <td>{dayOfWeekName}</td>
           </tr>
         </tbody>
