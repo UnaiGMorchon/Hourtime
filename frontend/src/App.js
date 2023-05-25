@@ -9,10 +9,13 @@ import { onAuthStateChanged } from "firebase/auth";
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { auth } from "./components/Firebase";
+import Buscador from "./components/Buscador";
+
 import "./App.css";
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [searches, setSearches] = useState([]);
 
   useEffect(() => {
     onAuthStateChanged(auth, function (user) {
@@ -26,12 +29,21 @@ const App = () => {
       }
     });
   }, []);
+
+  /*   // Función para guardar la búsqueda
+  const onSaveSearch = (search) => {
+    setSearches([...searches, search]);
+  };
+  <Buscador onSaveSearch={onSaveSearch} />
+
+ */
+
   return (
     <div>
       <Navbar />
       <Outlet />
       <Routes>
-        <Route path='/' element={<Home user={user} />} />
+        <Route path='/' element={<Home user={user} searches={searches} />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
       </Routes>

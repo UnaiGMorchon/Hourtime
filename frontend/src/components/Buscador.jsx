@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import RealTimeClock from "./RealTimeClock";
 import "../css/Buscador.css";
 
-const HorasMundo = () => {
+const HorasMundo = ({ onSaveSearch }) => {
+  // Agrega una prop onSaveSearch para guardar las búsquedas
   const navigate = useNavigate();
   const [hours, setHours] = useState([]);
   const [location, setLocation] = useState("");
@@ -13,6 +14,7 @@ const HorasMundo = () => {
   const [dayOfWeekName, setDayOfWeekName] = useState("");
   const [predictions, setPredictions] = useState([]);
   const [formattedTime, setFormattedTime] = useState(""); // Variable para almacenar la hora formateada
+  const [weatherCondition, setWeatherCondition] = useState(""); // Nueva variable para la condición meteorológica
 
   useEffect(() => {
     if (timeZone === "") return;
@@ -25,6 +27,8 @@ const HorasMundo = () => {
           const data = await response.json();
           setHours(data);
           setLocation(data.timezone);
+          onSaveSearch({ location: data.address, predictions: data.days }); // Guarda la búsqueda realizada
+
           console.log("data:", data);
 
           const dayName = getDayOfWeekName(data.day_of_week);
@@ -92,12 +96,40 @@ const HorasMundo = () => {
         setPredictions(data.days);
         setLocation(data.address);
         setTimeZone(data.timezone);
+        setWeatherCondition(data.conditions); // Guarda la condición meteorológica actual
       });
   };
 
+  const getBackgroundImage = () => {
+    switch (weatherCondition) {
+      case "Overcast":
+        return "/img/Overcast.png";
+      case "Clear":
+        return "/img/Clear.png";
+      case "Partially cloudy":
+        return "/img/Partially cloudy.png";
+      case "Rain":
+        return "/img/Rain.png";
+      case "Snow":
+        return "/img/Snow.png";
+      case "Thunderstorms":
+        return "/img/Thunderstorm.png";
+      case "Fog":
+        return "/img/Fog.png";
+      case "Ice":
+        return "/img/Ice.png";
+      default:
+        return "/img/fondo.png";
+    }
+  };
+
   return (
-    <div className='containerbuscador'>
-      <h1>Horas del mundo | Predicción</h1>
+    <div
+      className='containerbuscador'
+      style={{ backgroundImage: getBackgroundImage() }}
+    >
+      {/* <h1>Horas del mundo | Predicción </h1>*/}
+
       <h2>
         <input
           type='text'
@@ -109,7 +141,7 @@ const HorasMundo = () => {
         <button onClick={() => searchTemperature()}>Buscar Predicción</button>
       </h2>
 
-      <h2>{location}</h2>
+      <h2>{location.split("/")[1]}</h2>
       <RealTimeClock></RealTimeClock>
       <table>
         <thead>
@@ -122,13 +154,14 @@ const HorasMundo = () => {
             <th>Probabilidad de lluvia</th>
             <th>Humedad</th>
             <th>Condiciones</th>
-            <th>Descripción</th>
+            <p>{weatherCondition}</p>
+            {/*  <th>Descripción</th> */}
             <th>Amanecer</th>
             <th>Atardecer</th>
           </tr>
         </thead>
         <tbody>
-          {predictions.map((prediction, index) => (
+          {predictions.slice(0, 1).map((prediction, index) => (
             <tr key={index}>
               <td>{prediction.datetime}</td>
               <td>{formattedTime}</td>
@@ -138,7 +171,24 @@ const HorasMundo = () => {
               <td>{prediction.precipprob}%</td>
               <td>{prediction.humidity}%</td>
               <td>{prediction.conditions}</td>
-              <td>{prediction.description}</td>
+              {/* <td>{prediction.description}</td> */}
+              <td>{prediction.sunrise}</td>
+              <td>{prediction.sunset}</td>
+            </tr>
+          ))}
+        </tbody>
+        <p>Próximos días</p>
+        <tbody>
+          {predictions.slice(1).map((prediction, index) => (
+            <tr key={index}>
+              <td>{prediction.datetime}</td>
+              <td>{dayOfWeekName}</td>
+              <td>{prediction.tempmax}ºC</td>
+              <td>{prediction.feelslike}ºC</td>
+              <td>{prediction.precipprob}%</td>
+              <td>{prediction.humidity}%</td>
+              <td>{prediction.conditions}</td>
+              {/* <td>{prediction.description}</td> */}
               <td>{prediction.sunrise}</td>
               <td>{prediction.sunset}</td>
             </tr>

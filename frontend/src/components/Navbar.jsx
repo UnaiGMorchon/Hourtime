@@ -3,13 +3,11 @@ import "../css/navbar.css";
 
 const NavbarComponent = () => {
   return (
-    <nav style={{ backgroundColor: "light", position: "fixed", top: 0 }}>
-      <Link to='/' style={{ marginRight: "10px" }}>
-        Unai
-      </Link>
+    <nav>
+      <Link to='/'>Nimbus</Link>
       <div style={{ display: "flex", justifyContent: "flex-start" }}>
-        <Link to='/buscador'>buscador</Link>
-        <Link to='/reloj'>reloj</Link>
+        {/*   <Link to='/buscador'>buscador</Link>
+        <Link to='/reloj'>reloj</Link> */}
       </div>
     </nav>
   );
