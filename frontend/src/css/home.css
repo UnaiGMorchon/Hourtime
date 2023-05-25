@@ -1,0 +1,20 @@
+.home {
+  margin: 0;
+  margin-top: -22px;
+  background-image: url(../../public/img/fondo.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+/* .home h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.home p {
+  font-size: 18px;
+  color: #555;
+} */

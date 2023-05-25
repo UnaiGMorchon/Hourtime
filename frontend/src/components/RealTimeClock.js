@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../css/Reloj.css";
 
 const RealTimeClock = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -16,7 +17,7 @@ const RealTimeClock = () => {
   const formattedTime = currentTime.toLocaleTimeString();
 
   return (
-    <div>
+    <div className='containerreloj'>
       <h1>Hora actual</h1>
       <h2>{formattedTime}</h2>
     </div>

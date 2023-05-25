@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import RealTimeClock from "./RealTimeClock";
+import "../css/Buscador.css";
 
 const HorasMundo = () => {
   const navigate = useNavigate();
@@ -95,7 +96,7 @@ const HorasMundo = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='containerbuscador'>
       <h1>Horas del mundo | Predicción</h1>
       <h2>
         <input
@@ -149,3 +150,5 @@ const HorasMundo = () => {
 };
 
 export default HorasMundo;
+
+// quiero guardar las busquedas hechas ene el buscador <button onClick={() => searchTemperature()}>Buscar Predicción</button> de tiempo y de horas searchHours para posteriormente mostrarlas en el home

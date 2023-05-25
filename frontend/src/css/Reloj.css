@@ -1,0 +1,9 @@
+.containerreloj {
+  margin: 0;
+  margin-top: -22px;
+  background-image: url(../../public/img/reloj.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
