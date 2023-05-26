@@ -252,11 +252,11 @@ const HorasMundo = ({ onSaveSearch }) => {
             </div>
           </div>
         ))}
-        <p className='predictionnextdays'>Próximos días</p>
-        {/*  <tbody className='prediction'>
+        {/*  <p className='predictionnextdays'>Próximos días</p>
+        <tbody className='prediction'>
           {predictions.slice(1).map((prediction, index) => (
-            <tr key={index} className='card'>
-              <td>{prediction.datetime}</td>
+            <tr key={index} className='card'> */}
+        {/* <td>{prediction.datetime}</td>
               <td>
                 {getDayOfWeekName(new Date(prediction.datetime).getDay())}
               </td>
@@ -267,65 +267,40 @@ const HorasMundo = ({ onSaveSearch }) => {
               <td className='condicionescard'>{prediction.conditions}</td>
               <td>{prediction.description}</td>
               <td className='sunrise'>{prediction.sunrise}</td>
-              <td className='sunset'>{prediction.sunset}</td>
+              <td className='sunset'>{prediction.sunset}</td> */}
+        {/*  <div class='week-container'>
+                <ul class='week-list'>
+                  <li class='active'>
+                    <span class='day-name'>
+                      {getDayOfWeekName(new Date(prediction.datetime).getDay())}
+                    </span>
+                    <span class='day-temp'>{prediction.tempmax}°C</span>
+                  </li>
+                  <div class='clear'></div>
+                </ul>
+              </div>
             </tr>
           ))}
         </tbody> */}
+        <tbody className='prediction'>
+          <tr className='card'>
+            <div class='week-container'>
+              <ul class='week-list'>
+                {predictions.slice(1, 4).map((prediction, index) => (
+                  <li key={index} class='active'>
+                    <span class='day-name'>
+                      {getDayOfWeekName(new Date(prediction.datetime).getDay())}
+                    </span>
+                    <span class='day-temp'>{prediction.tempmax}°C</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
 };
 
 export default HorasMundo;
-
-<div class='container'>
-  <div class='info-side'>
-    <div class='today-info-container'>
-      <div class='today-info'>
-        <div class='precipitation'>
-          {" "}
-          <span class='title'>PRECIPITATION</span>
-          <span class='value'>0 %</span>
-          <div class='clear'></div>
-        </div>
-        <div class='humidity'>
-          {" "}
-          <span class='title'>HUMIDITY</span>
-          <span class='value'>34 %</span>
-          <div class='clear'></div>
-        </div>
-        <div class='wind'>
-          {" "}
-          <span class='title'>WIND</span>
-          <span class='value'>0 km/h</span>
-          <div class='clear'></div>
-        </div>
-      </div>
-    </div>
-    <div class='week-container'>
-      <ul class='week-list'>
-        <li class='active'>
-          <i class='day-icon' data-feather='sun'></i>
-          <span class='day-name'>Tue</span>
-          <span class='day-temp'>29°C</span>
-        </li>
-        <li>
-          <i class='day-icon' data-feather='cloud'></i>
-          <span class='day-name'>Wed</span>
-          <span class='day-temp'>21°C</span>
-        </li>
-        <li>
-          <i class='day-icon' data-feather='cloud-snow'></i>
-          <span class='day-name'>Thu</span>
-          <span class='day-temp'>08°C</span>
-        </li>
-        <li>
-          <i class='day-icon' data-feather='cloud-rain'></i>
-          <span class='day-name'>Fry</span>
-          <span class='day-temp'>19°C</span>
-        </li>
-        <div class='clear'></div>
-      </ul>
-    </div>
-  </div>
-</div>;

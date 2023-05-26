@@ -731,10 +731,38 @@ body {
 .clear {
   clear: both;
 }
+
+.week-container {
+  overflow-x: scroll; /* Permite desplazarse horizontalmente */
+  white-space: nowrap; /* Evita el salto de línea */
+  padding: 10px 0; /* Ajusta el espaciado interno */
+}
+
+.week-list {
+  display: inline-flex; /* Muestra los elementos en una línea */
+  gap: 10px; /* Ajusta el espacio entre los elementos */
+}
+
+.week-list li {
+  flex-shrink: 0; /* Evita que los elementos se reduzcan */
+  min-width: 50px; /* Establece un ancho mínimo para cada elemento */
+  background-color: #f1f1f1; /* Color de fondo */
+  padding: 10px; /* Ajusta el espaciado interno */
+  border-radius: 5px; /* Agrega esquinas redondeadas */
+}
+
+/*  --------------------- */
+
+.info-side {
+  position: relative;
+  float: left;
+  height: 100%;
+  padding-top: 25px;
+}
+
 .today-info {
   padding: 15px;
   margin: 0 25px 25px 25px;
-  /* 	box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25); */
   border-radius: 10px;
 }
 
@@ -751,10 +779,10 @@ body {
   float: right;
 }
 
-/* .week-list {
+.week-list {
   list-style-type: none;
   padding: 0;
-  margin: 10px 35px;
+
   -webkit-box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -805,4 +833,4 @@ body {
   text-align: center;
   margin: 10px 0 0 0;
   font-weight: 700;
-} */
+}
