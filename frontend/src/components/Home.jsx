@@ -52,11 +52,11 @@ const Home = ({ user, searches }) => {
         {/* <div icon='sunny' >
           <span class='sun'></span>
         </div> */}
-        <div icon='cloudy'>
+        {/* <div icon='cloudy'>
           <span class='cloud'></span>
           <span class='cloud'></span>
         </div>
-        <RealTimeClock />
+        <RealTimeClock /> */}
         {/* <div icon='snowy' >
           <span class='snowman'></span>
         </div>

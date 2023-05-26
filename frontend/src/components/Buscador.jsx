@@ -226,16 +226,16 @@ const HorasMundo = ({ onSaveSearch }) => {
         <p>Próximos días</p>
         <tbody className='predictionnextdays'>
           {predictions.slice(1).map((prediction, index) => (
-            <tr key={index}>
+            <tr key={index} className='card'>
               <td>{prediction.datetime}</td>
               <td>
                 {getDayOfWeekName(new Date(prediction.datetime).getDay())}
               </td>
-              <td className='temperatura'>{prediction.tempmax}ºC</td>
-              <td className='sensacion'>{prediction.feelslike}ºC</td>
-              <td className='precipitaciones'>{prediction.precipprob}%</td>
-              <td className='humedad'>{prediction.humidity}%</td>
-              <td className='condiciones'>{prediction.conditions}</td>
+              <td className='temperaturacard'>{prediction.tempmax}ºC</td>
+              <td className='sensacioncard'>{prediction.feelslike}ºC</td>
+              <td className='precipitacionescard'>{prediction.precipprob}%</td>
+              <td className='humedadcard'>{prediction.humidity}%</td>
+              <td className='condicionescard'>{prediction.conditions}</td>
               {/* <td>{prediction.description}</td> */}
               {/* <td className='sunrise'>{prediction.sunrise}</td>
               <td className='sunset'>{prediction.sunset}</td> */}
