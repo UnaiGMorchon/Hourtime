@@ -129,7 +129,6 @@ const HorasMundo = ({ onSaveSearch }) => {
       style={{ backgroundImage: getBackgroundImage() }}
     >
       {/* <h1>Horas del mundo | Predicción </h1>*/}
-
       <h2>
         <input
           className='inputbuscador'
@@ -138,10 +137,8 @@ const HorasMundo = ({ onSaveSearch }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder='Buscar ciudad o lugar'
         />
-
         <button onClick={() => searchTemperature()}>Buscar</button>
       </h2>
-
       {/* <RealTimeClock></RealTimeClock> */}
       <table>
         {/*  <div className='citysearch'>
@@ -164,20 +161,19 @@ const HorasMundo = ({ onSaveSearch }) => {
             <th>Atardecer</th>
           </tr>
         </thead> */}
-        <div className='predictiontemp'>
+        {/* <div className='predictiontemp'>
           <div className='citysearch'>
             <h2 className='city'>{location.split("/")[1]}</h2>
-            {/* <h4 className='horatitulo'>{formattedTime}</h4> */}
+            
           </div>
-        </div>
+        </div> */}
         {predictions.slice(0, 1).map((prediction, index) => (
           <div key={index}>
-            <div className='fecha'>{prediction.datetime}</div>
-
-            <div className='diasemana'>
+            {/* <div className='fecha'>{prediction.datetime}</div> */}
+            {/* <div className='diasemana'>
               {getDayOfWeekName(new Date(prediction.datetime).getDay())}
-            </div>
-            <div className='temperatura'>{prediction.tempmax}ºC</div>
+            </div> */}
+            {/* <div className='temperatura'>{prediction.tempmax}ºC</div> */}
             <div className='iconostiempo'>
               {/* <div icon='sunny' >
           <span class='sun'></span>
@@ -186,21 +182,18 @@ const HorasMundo = ({ onSaveSearch }) => {
                 <span class='cloud'></span>
                 <span class='cloud'></span>
               </div>
-
               {/* <div icon='snowy' >
           <span class='snowman'></span>
         </div>
-
         <div icon='stormy' >
           <span class='cloud'></span>
-        </div>
- */}
+        </div> */}
               {/* <div icon='supermoon' >
           <span class='moon'></span>
           <span class='meteor'></span>
         </div> */}
             </div>
-            <div className='lasdoshoras'>
+            {/* <div className='lasdoshoras'>
               <RealTimeClock />
               <div className='containerrelojtitulo2'>
                 <h1 className='city'>{location.split("/")[1]}</h1>
@@ -208,23 +201,59 @@ const HorasMundo = ({ onSaveSearch }) => {
                   <h2 className='hora'>{formattedTime}</h2>
                 </div>
               </div>
-            </div>
-            <div className='condiciones'>{prediction.conditions}</div>
-            <div className='sensacion'>
-              Sensación térmica {prediction.feelslike}º
-            </div>
+            </div> */}
+            {/*  <div className='condiciones'>{prediction.conditions}</div>
+            <div className='sensacion'>Sensación térmicacº</div>
             <div className='precipitaciones'>
               Probabilidad de lluvia {prediction.precipprob}%
             </div>
-            <div className='humedad'>Humedad {prediction.humidity}%</div>
-
+            <div className='humedad'>Humedad {prediction.humidity}%</div>*/}
             {/* <td>{prediction.description}</td> */}
             {/* <td>{prediction.sunrise}</td>
               <td>{prediction.sunset}</td> */}
+            <div class='date-container'>
+              <span class='location'>{location.split("/")[1]}</span>
+              <h2 class='date-dayname'>
+                {getDayOfWeekName(new Date(prediction.datetime).getDay())}
+              </h2>
+              <span class='date-day'>{prediction.datetime}</span>
+            </div>
+            <div class='weather-container'>
+              <h1 class='weather-temp'>{prediction.tempmax}ºC</h1>
+            </div>
+            {/*  <h3 class='weather-desc'>{prediction.conditions}</h3> */}
+            <div className='dos_horas'>
+              <h3 class='weather-desc'>
+                <RealTimeClock />{" "}
+              </h3>
+              <h3 class='weather-desc'>
+                <h5>{location.split("/")[1]}</h5>
+                <h4>{formattedTime}</h4>
+              </h3>
+            </div>
+            <div class='today-info-container'>
+              <div class='today-info'>
+                <div class='wind'>
+                  <span class='title'>sensacion térmica</span>
+                  <span class='value'> {prediction.feelslike}ºC</span>
+                  <div class='clear'></div>
+                </div>
+                <div class='precipitation'>
+                  <span class='title'>precipitaciones</span>
+                  <span class='value'> {prediction.precipprob} %</span>
+                  <div class='clear'></div>
+                </div>
+                <div class='humidity'>
+                  <span class='title'>humedad</span>
+                  <span class='value'> {prediction.humidity} %</span>
+                  <div class='clear'></div>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
-        <p>Próximos días</p>
-        <tbody className='predictionnextdays'>
+        <p className='predictionnextdays'>Próximos días</p>
+        {/*  <tbody className='prediction'>
           {predictions.slice(1).map((prediction, index) => (
             <tr key={index} className='card'>
               <td>{prediction.datetime}</td>
@@ -236,12 +265,12 @@ const HorasMundo = ({ onSaveSearch }) => {
               <td className='precipitacionescard'>{prediction.precipprob}%</td>
               <td className='humedadcard'>{prediction.humidity}%</td>
               <td className='condicionescard'>{prediction.conditions}</td>
-              {/* <td>{prediction.description}</td> */}
-              {/* <td className='sunrise'>{prediction.sunrise}</td>
-              <td className='sunset'>{prediction.sunset}</td> */}
+              <td>{prediction.description}</td>
+              <td className='sunrise'>{prediction.sunrise}</td>
+              <td className='sunset'>{prediction.sunset}</td>
             </tr>
           ))}
-        </tbody>
+        </tbody> */}
       </table>
     </div>
   );
@@ -249,4 +278,54 @@ const HorasMundo = ({ onSaveSearch }) => {
 
 export default HorasMundo;
 
-// quiero guardar las busquedas hechas ene el buscador <button onClick={() => searchTemperature()}>Buscar Predicción</button> de tiempo y de horas searchHours para posteriormente mostrarlas en el home
+<div class='container'>
+  <div class='info-side'>
+    <div class='today-info-container'>
+      <div class='today-info'>
+        <div class='precipitation'>
+          {" "}
+          <span class='title'>PRECIPITATION</span>
+          <span class='value'>0 %</span>
+          <div class='clear'></div>
+        </div>
+        <div class='humidity'>
+          {" "}
+          <span class='title'>HUMIDITY</span>
+          <span class='value'>34 %</span>
+          <div class='clear'></div>
+        </div>
+        <div class='wind'>
+          {" "}
+          <span class='title'>WIND</span>
+          <span class='value'>0 km/h</span>
+          <div class='clear'></div>
+        </div>
+      </div>
+    </div>
+    <div class='week-container'>
+      <ul class='week-list'>
+        <li class='active'>
+          <i class='day-icon' data-feather='sun'></i>
+          <span class='day-name'>Tue</span>
+          <span class='day-temp'>29°C</span>
+        </li>
+        <li>
+          <i class='day-icon' data-feather='cloud'></i>
+          <span class='day-name'>Wed</span>
+          <span class='day-temp'>21°C</span>
+        </li>
+        <li>
+          <i class='day-icon' data-feather='cloud-snow'></i>
+          <span class='day-name'>Thu</span>
+          <span class='day-temp'>08°C</span>
+        </li>
+        <li>
+          <i class='day-icon' data-feather='cloud-rain'></i>
+          <span class='day-name'>Fry</span>
+          <span class='day-temp'>19°C</span>
+        </li>
+        <div class='clear'></div>
+      </ul>
+    </div>
+  </div>
+</div>;
