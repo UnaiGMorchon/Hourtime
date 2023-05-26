@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../components/Firebase";
+import "../css/Login.scss";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -32,10 +33,9 @@ const Signup = () => {
     <main>
       <section>
         <div>
-          <div>
-            <h1> FocusApp </h1>
+          <div className='formulario'>
             <form>
-              <div>
+              <div className='formularioemail'>
                 <label htmlFor='email-address'>Email address</label>
                 <input
                   type='email'
@@ -47,7 +47,7 @@ const Signup = () => {
                 />
               </div>
 
-              <div>
+              <div className='formulariopassword'>
                 <label htmlFor='password'>Password</label>
                 <input
                   type='password'
@@ -64,7 +64,7 @@ const Signup = () => {
               </button>
             </form>
 
-            <p>
+            <p className='text-sm text-white text-center'>
               Already have an account? <NavLink to='/login'>Sign in</NavLink>
             </p>
           </div>

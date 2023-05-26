@@ -4,7 +4,6 @@ import { auth } from "./Firebase";
 import { useNavigate } from "react-router-dom";
 import "../css/home.scss";
 import "../css/Login.scss";
-
 import Buscador from "./Buscador";
 import RealTimeClock from "./RealTimeClock";
 

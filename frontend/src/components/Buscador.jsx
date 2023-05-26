@@ -132,6 +132,7 @@ const HorasMundo = ({ onSaveSearch }) => {
 
       <h2>
         <input
+          className='inputbuscador'
           type='text'
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
