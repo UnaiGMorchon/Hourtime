@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/Reloj.css";
+import "../css/Reloj.scss";
 
 const RealTimeClock = () => {
   const [currentTime, setCurrentTime] = useState(new Date());

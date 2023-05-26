@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import RealTimeClock from "./RealTimeClock";
-import "../css/Buscador.css";
+import "../css/Buscador.scss";
 
 const HorasMundo = ({ onSaveSearch }) => {
   // Agrega una prop onSaveSearch para guardar las búsquedas

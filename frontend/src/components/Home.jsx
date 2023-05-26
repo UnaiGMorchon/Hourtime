@@ -2,7 +2,9 @@ import React from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./Firebase";
 import { useNavigate } from "react-router-dom";
-import "../css/home.css";
+import "../css/home.scss";
+import "../css/Login.scss";
+
 import Buscador from "./Buscador";
 import RealTimeClock from "./RealTimeClock";
 

@@ -1,11 +1,24 @@
+@import "./Colores.scss";
+
 .home {
   margin: 0;
   margin-top: -22px;
-  background-image: url(../../public/img/fondo.jpg);
+  background-image: url(../../public/img/fondo.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  color: white;
   height: 100vh;
+}
+
+.button {
+  border: none;
+  background: $color-primary;
+  // Cambia el color de fondo según tus necesidades
+  color: $color-white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 /* .home h1 {
@@ -60,6 +73,7 @@
   --blend1: #fc5830;
   --blend2: #f98c24;
   --blend-to: 65%;
+  margin-left: 30%;
 }
 [icon="cloudy"] {
   --shadow: #1378bb;
@@ -71,6 +85,7 @@
   --blend1: #1b9ce2;
   --blend-to: 65%;
   --blend-to: 90%;
+  margin-left: 30%;
 }
 [icon="snowy"] {
   --shadow: #c9e8de;
@@ -78,11 +93,13 @@
   --blend2: #e0e2e5;
   --blend-to: 90%;
   --blend-dir: bottom left;
+  margin-left: 30%;
 }
 [icon="stormy"] {
   --shadow: #34c6d8;
   --blend1: #4b9cc2;
   --blend2: #9adbd9;
+  margin-left: 30%;
 }
 [icon="supermoon"] {
   --shadow: #5133a5;
@@ -90,6 +107,7 @@
   --blend2: #aa4cba;
   --blend-to: 65%;
   --blend-dir: bottom right;
+  margin-left: 30%;
 }
 
 /* SUNNY */
@@ -419,12 +437,13 @@
 
 body {
   min-height: 100vh;
-
   align-items: center;
   justify-content: space-around;
   flex-flow: row wrap;
-
-  color: #e6e8db;
+  background-image: url(../../public/img/fondo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 [icon="sunny"] {
