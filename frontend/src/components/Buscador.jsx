@@ -139,14 +139,17 @@ const HorasMundo = ({ onSaveSearch }) => {
           placeholder='Buscar ciudad o lugar'
         />
 
-        <button onClick={() => searchTemperature()}>Buscar Predicción</button>
+        <button onClick={() => searchTemperature()}>Buscar</button>
       </h2>
-
-      <h2>{location.split("/")[1]}</h2>
-      <RealTimeClock></RealTimeClock>
+      <div className='citysearch'>
+        <h2>{location.split("/")[1]}</h2>
+        <h2>{formattedTime}</h2>
+        <h2>{dayOfWeekName}</h2>
+      </div>
+      {/* <RealTimeClock></RealTimeClock> */}
       <table>
         <thead>
-          <tr>
+          <tr className='prediction'>
             <th>Día</th>
             <th>Hora</th>
             <th>Día de la semana</th>
@@ -161,7 +164,7 @@ const HorasMundo = ({ onSaveSearch }) => {
             <th>Atardecer</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='predictiontemp'>
           {predictions.slice(0, 1).map((prediction, index) => (
             <tr key={index}>
               <td>{prediction.datetime}</td>
@@ -179,7 +182,7 @@ const HorasMundo = ({ onSaveSearch }) => {
           ))}
         </tbody>
         <p>Próximos días</p>
-        <tbody>
+        <tbody className='predictionnextdays'>
           {predictions.slice(1).map((prediction, index) => (
             <tr key={index}>
               <td>{prediction.datetime}</td>

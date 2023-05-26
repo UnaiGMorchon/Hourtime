@@ -32,14 +32,18 @@ const Home = ({ user, searches }) => {
     <div className='home'>
       <>
         <nav>
-          <p>Welcome Home {user ? getUsername(user.email) : "Guest"}</p>
-          <div>
+          <p className='loginhome'>
+            {/* Welcome Home  */}
+            {user ? getUsername(user.email) : "Invitado"}
+          </p>
+          <div className='loginboton'>
             {user ? (
               <button onClick={handleLogout}>Logout</button>
             ) : (
               <button onClick={() => navigate("/login")}>Login</button>
             )}
           </div>
+          <Buscador />
         </nav>
       </>
       {/* <h1>Home</h1>
@@ -52,7 +56,7 @@ const Home = ({ user, searches }) => {
           <span class='cloud'></span>
           <span class='cloud'></span>
         </div>
-
+        <RealTimeClock />
         {/* <div icon='snowy' >
           <span class='snowman'></span>
         </div>
@@ -66,8 +70,6 @@ const Home = ({ user, searches }) => {
           <span class='meteor'></span>
         </div> */}
       </div>
-      <Buscador />
-      <RealTimeClock />
 
       <h2>Saved Searches:</h2>
       <ul>

@@ -1,9 +1,14 @@
-/* .containerreloj {
-  margin: 0;
-  margin-top: -22px;
-  background-image: url(../../public/img/reloj.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-} */
+.containerreloj {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #085979;
+}
+.containerrelojtitulo h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #085979;
+  font-size: small;
+  margin-bottom: -20px;
+}

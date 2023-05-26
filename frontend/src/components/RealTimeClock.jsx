@@ -17,9 +17,11 @@ const RealTimeClock = () => {
   const formattedTime = currentTime.toLocaleTimeString();
 
   return (
-    <div className='containerreloj'>
+    <div className='containerrelojtitulo'>
       <h1>Hora actual</h1>
-      <h2>{formattedTime}</h2>
+      <div className='containerreloj'>
+        <h2>{formattedTime}</h2>
+      </div>
     </div>
   );
 };

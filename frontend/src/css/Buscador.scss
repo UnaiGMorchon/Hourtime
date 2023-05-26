@@ -1,20 +1,29 @@
-/* .containerbuscador {
-  background-image: url(../../public/img/fondo_hourtime.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-} */
+.citysearch {
+  text-align: center;
+}
+
+.prediction {
+  color: red;
+}
+
+.predictionnextdays {
+  color: rgb(60, 0, 255);
+}
+.predictiontemp {
+  color: rgb(81, 255, 0);
+}
+
+.containerbuscador {
+  margin-top: -72px;
+}
 
 .inputbuscador {
-  width: 95%;
+  width: 40%;
   height: 10px;
   border-radius: 10px;
   border: none;
   padding: 10px;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: -70px;
   backdrop-filter: blur(10px); /* Aplica un efecto de desenfoque */
   background-color: rgba(
     255,
@@ -28,8 +37,8 @@
     255,
     0.5
   ); /* Establece un color de borde con transparencia */
-  color: white; /* Cambia el color del texto a blanco */
 }
+
 .inputbuscador:focus {
   outline: none;
 }
