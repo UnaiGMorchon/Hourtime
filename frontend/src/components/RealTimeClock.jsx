@@ -18,7 +18,7 @@ const RealTimeClock = () => {
 
   return (
     <div className='containerrelojtitulo'>
-      <h1>Hora actual</h1>
+      <h1>Actual</h1>
       <div className='containerreloj'>
         <h2>{formattedTime}</h2>
       </div>

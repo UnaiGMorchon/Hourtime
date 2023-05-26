@@ -141,60 +141,104 @@ const HorasMundo = ({ onSaveSearch }) => {
 
         <button onClick={() => searchTemperature()}>Buscar</button>
       </h2>
-      <div className='citysearch'>
-        <h2>{location.split("/")[1]}</h2>
-        <h2>{formattedTime}</h2>
-        <h2>{dayOfWeekName}</h2>
-      </div>
+
       {/* <RealTimeClock></RealTimeClock> */}
       <table>
-        <thead>
+        {/*  <div className='citysearch'>
+          <h2 className='city'>{location.split("/")[1]}</h2>
+          <h4 className='fechatitulo'>{formattedTime}</h4>
+        </div> */}
+        {/*  <thead>
           <tr className='prediction'>
             <th>Día</th>
             <th>Hora</th>
             <th>Día de la semana</th>
-            <th>Temperatura</th>
-            <th>Sensación térmica</th>
-            <th>Probabilidad de lluvia</th>
-            <th>Humedad</th>
+            <th>Temperatura</th> */}
+        {/*   <th>Sensación térmica</th>
+        <th>Probabilidad de lluvia</th> */}
+        {/*  <th>Humedad</th>
             <th>Condiciones</th>
             <p>{weatherCondition}</p>
-            {/*  <th>Descripción</th> */}
-            <th>Amanecer</th>
+              <th>Descripción</th> 
+          <th>Amanecer</th>
             <th>Atardecer</th>
           </tr>
-        </thead>
-        <tbody className='predictiontemp'>
-          {predictions.slice(0, 1).map((prediction, index) => (
-            <tr key={index}>
-              <td>{prediction.datetime}</td>
-              <td>{formattedTime}</td>
-              <td>{dayOfWeekName}</td>
-              <td>{prediction.tempmax}ºC</td>
-              <td>{prediction.feelslike}ºC</td>
-              <td>{prediction.precipprob}%</td>
-              <td>{prediction.humidity}%</td>
-              <td>{prediction.conditions}</td>
-              {/* <td>{prediction.description}</td> */}
-              <td>{prediction.sunrise}</td>
-              <td>{prediction.sunset}</td>
-            </tr>
-          ))}
-        </tbody>
+        </thead> */}
+        <div className='predictiontemp'>
+          <div className='citysearch'>
+            <h2 className='city'>{location.split("/")[1]}</h2>
+            {/* <h4 className='horatitulo'>{formattedTime}</h4> */}
+          </div>
+        </div>
+        {predictions.slice(0, 1).map((prediction, index) => (
+          <div key={index}>
+            <div className='fecha'>{prediction.datetime}</div>
+
+            <div className='diasemana'>
+              {getDayOfWeekName(new Date(prediction.datetime).getDay())}
+            </div>
+            <div className='temperatura'>{prediction.tempmax}ºC</div>
+            <div className='iconostiempo'>
+              {/* <div icon='sunny' >
+          <span class='sun'></span>
+        </div> */}
+              <div icon='cloudy'>
+                <span class='cloud'></span>
+                <span class='cloud'></span>
+              </div>
+
+              {/* <div icon='snowy' >
+          <span class='snowman'></span>
+        </div>
+
+        <div icon='stormy' >
+          <span class='cloud'></span>
+        </div>
+ */}
+              {/* <div icon='supermoon' >
+          <span class='moon'></span>
+          <span class='meteor'></span>
+        </div> */}
+            </div>
+            <div className='lasdoshoras'>
+              <RealTimeClock />
+              <div className='containerrelojtitulo2'>
+                <h1 className='city'>{location.split("/")[1]}</h1>
+                <div className='containerreloj2'>
+                  <h2 className='hora'>{formattedTime}</h2>
+                </div>
+              </div>
+            </div>
+            <div className='condiciones'>{prediction.conditions}</div>
+            <div className='sensacion'>
+              Sensación térmica {prediction.feelslike}º
+            </div>
+            <div className='precipitaciones'>
+              Probabilidad de lluvia {prediction.precipprob}%
+            </div>
+            <div className='humedad'>Humedad {prediction.humidity}%</div>
+
+            {/* <td>{prediction.description}</td> */}
+            {/* <td>{prediction.sunrise}</td>
+              <td>{prediction.sunset}</td> */}
+          </div>
+        ))}
         <p>Próximos días</p>
         <tbody className='predictionnextdays'>
           {predictions.slice(1).map((prediction, index) => (
             <tr key={index}>
               <td>{prediction.datetime}</td>
-              <td>{dayOfWeekName}</td>
-              <td>{prediction.tempmax}ºC</td>
-              <td>{prediction.feelslike}ºC</td>
-              <td>{prediction.precipprob}%</td>
-              <td>{prediction.humidity}%</td>
-              <td>{prediction.conditions}</td>
+              <td>
+                {getDayOfWeekName(new Date(prediction.datetime).getDay())}
+              </td>
+              <td className='temperatura'>{prediction.tempmax}ºC</td>
+              <td className='sensacion'>{prediction.feelslike}ºC</td>
+              <td className='precipitaciones'>{prediction.precipprob}%</td>
+              <td className='humedad'>{prediction.humidity}%</td>
+              <td className='condiciones'>{prediction.conditions}</td>
               {/* <td>{prediction.description}</td> */}
-              <td>{prediction.sunrise}</td>
-              <td>{prediction.sunset}</td>
+              {/* <td className='sunrise'>{prediction.sunrise}</td>
+              <td className='sunset'>{prediction.sunset}</td> */}
             </tr>
           ))}
         </tbody>
