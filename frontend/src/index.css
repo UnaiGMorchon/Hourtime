@@ -1,13 +1,21 @@
+@font-face {
+  font-family: montserrat;
+  src: url(../public/fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: montserratbold;
+  src: url(../public/fonts/Montserrat-ExtraBold.ttf);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: montserrat, montserratbold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

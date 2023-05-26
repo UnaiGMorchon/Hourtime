@@ -1,5 +1,16 @@
 @import "./Colores.scss";
 
+button {
+  border: none;
+  background: $color-primary;
+  // Cambia el color de fondo según tus necesidades
+  color: $color-white;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .home {
   margin: 0;
   margin-top: -22px;
