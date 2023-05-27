@@ -135,7 +135,8 @@ const HorasMundo = ({ onSaveSearch }) => {
       }}
     >
       {/* <h1>Horas del mundo | Predicción </h1>*/}
-      <h2>
+
+      <div>
         <input
           className='inputbuscador'
           type='text'
@@ -143,8 +144,14 @@ const HorasMundo = ({ onSaveSearch }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder='Buscar ciudad o lugar'
         />
-        <button onClick={() => searchTemperature()}>Buscar</button>
-      </h2>
+        <button
+          className='inputbuscadorboton'
+          onClick={() => searchTemperature()}
+        >
+          Buscar
+        </button>
+      </div>
+
       {/* <RealTimeClock></RealTimeClock> */}
       <div>
         {/*  <div className='citysearch'>
@@ -189,7 +196,13 @@ const HorasMundo = ({ onSaveSearch }) => {
                 <div icon='sunny'>
                   <span className='sun'></span>
                 </div>
-              ) : prediction.conditions === "Overcast" ? (
+              ) : prediction.conditions === "Overcast" ||
+                prediction.conditions === "cloudy" ||
+                prediction.conditions.includes(
+                  "cloudy",
+                  "partically",
+                  "Overcast"
+                ) ? (
                 <div icon='cloudy'>
                   <span className='cloud'></span>
                   <span className='cloud'></span>
@@ -198,7 +211,9 @@ const HorasMundo = ({ onSaveSearch }) => {
                 <div icon='snowy'>
                   <span className='snowman'></span>
                 </div>
-              ) : prediction.conditions === "Thunderstorm" ? (
+              ) : prediction.conditions === "Thunderstorm" ||
+                prediction.conditions === "Rain" ||
+                prediction.conditions.includes("Rain") ? (
                 <div icon='stormy'>
                   <span className='cloud'></span>
                 </div>
