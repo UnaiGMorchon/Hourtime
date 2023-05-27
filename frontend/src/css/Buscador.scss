@@ -1,3 +1,33 @@
+.background-image-clear {
+  background-image: url("../../public/img/Clear.png");
+}
+.background-image-thunderstorm {
+  background-image: url("../../public/img/Thunderstorm.png");
+}
+
+.background-image-partially_cloudy {
+  background-image: url("../../public/img/Partially_cloudy.png");
+}
+
+.background-image-overcast {
+  background-image: url("../../public/img/Overcast.png");
+}
+.background-image-rain {
+  background-image: url("../../public/img/Rain.png");
+}
+
+.background-image-fog {
+  background-image: url("../../public/img/Fog.png");
+}
+
+.background-image-snow {
+  background-image: url("../../public/img/Snow.png");
+}
+
+.background-image-ice {
+  background-image: url("../../public/img/Ice.png");
+}
+
 .iconostiempo {
   margin-top: 120px;
   margin-left: -16px;
@@ -7,21 +37,22 @@
   margin-top: 27px;
   margin-left: -26px;
 }
-
 .dos_horas {
   margin-top: 119px;
-  margin-left: -26px;
-}
-
-.dos_horas {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  justify-items: center;
 }
 
 .dos_horas h3 {
-  flex-basis: 50%;
-  margin: 0;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.dos_horas h5,
+.dos_horas h4 {
+  text-align: center;
 }
 
 .weather-desc {
@@ -30,9 +61,11 @@
   align-items: center;
 }
 
-.weather-desc h5,
+weather-desc h5,
 .weather-desc h4 {
-  margin: 0;
+  position: relative;
+
+  margin: 0px;
 }
 
 /*
@@ -574,10 +607,10 @@ body {
   align-items: center;
   justify-content: space-around;
   flex-flow: row wrap;
-  background-image: url(../../public/img/fondo.png);
+  /* background-image: url(../../public/img/fondo.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
 }
 
 [icon="sunny"] {
@@ -703,7 +736,7 @@ body {
 
 .weather-container {
   position: absolute;
-  bottom: 320px;
+  bottom: 357px;
   left: 45px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -720,12 +753,16 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.weather-desc {
-  margin-left: 50px;
+.weather-desc1 {
   margin: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.weather-desc2 {
+  position: relative;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
 /* --------------------- */
 
 .clear {
@@ -736,11 +773,13 @@ body {
   overflow-x: scroll; /* Permite desplazarse horizontalmente */
   white-space: nowrap; /* Evita el salto de línea */
   padding: 10px 0; /* Ajusta el espaciado interno */
+  margin-left: -32px;
 }
 
 .week-list {
   display: inline-flex; /* Muestra los elementos en una línea */
   gap: 10px; /* Ajusta el espacio entre los elementos */
+  margin-top: -4px;
 }
 
 .week-list li {
@@ -764,6 +803,7 @@ body {
   padding: 15px;
   margin: 0 25px 25px 25px;
   border-radius: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .today-info > div:not(:last-child) {
@@ -782,11 +822,9 @@ body {
 .week-list {
   list-style-type: none;
   padding: 0;
-
   -webkit-box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.3);
 }
 
 .week-list > li {
@@ -810,8 +848,8 @@ body {
 }
 
 .week-list > li.active {
-  background: #fff;
-  color: #222831;
+  background: #00000060;
+  color: #ffffff;
   border-radius: 10px;
 }
 

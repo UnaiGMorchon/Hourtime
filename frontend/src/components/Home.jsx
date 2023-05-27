@@ -50,24 +50,24 @@ const Home = ({ user, searches }) => {
       <p>This is Home page</p> */}
       <div>
         {/* <div icon='sunny' >
-          <span class='sun'></span>
+          <span className='sun'></span>
         </div> */}
         {/* <div icon='cloudy'>
-          <span class='cloud'></span>
-          <span class='cloud'></span>
+          <span className='cloud'></span>
+          <span className='cloud'></span>
         </div>
         <RealTimeClock /> */}
         {/* <div icon='snowy' >
-          <span class='snowman'></span>
+          <span className='snowman'></span>
         </div>
 
         <div icon='stormy' >
-          <span class='cloud'></span>
+          <span className='cloud'></span>
         </div>
  */}
         {/* <div icon='supermoon' >
-          <span class='moon'></span>
-          <span class='meteor'></span>
+          <span className='moon'></span>
+          <span className='meteor'></span>
         </div> */}
       </div>
 
