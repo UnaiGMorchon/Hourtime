@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./Firebase";
 import { useNavigate } from "react-router-dom";
 import "../css/home.scss";
 import "../css/Login.scss";
 import Buscador from "./Buscador";
-import RealTimeClock from "./RealTimeClock";
+//import RealTimeClock from "./RealTimeClock";
 
-const Home = (user) => {
+const Home = ({ user, searchHistory }) => {
   // Agrega la prop searches para recibir las búsquedas guardadas
   const navigate = useNavigate();
 
@@ -122,6 +122,12 @@ const Home = (user) => {
       {/* <h2>Saved Searches:</h2>
       <ul>
         {searches.map((search, index) => (
+          <li key={index}>{search.location}</li>
+        ))}
+      </ul> */}
+      {/* <h2>Saved Searches:</h2>
+      <ul>
+        {searchHistory.map((search, index) => (
           <li key={index}>{search.location}</li>
         ))}
       </ul> */}
