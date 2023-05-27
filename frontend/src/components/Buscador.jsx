@@ -80,6 +80,10 @@ const HorasMundo = ({ onSaveSearch }) => {
   const api_key = "2SUUALUWUSYC86JWSJG272GDC";
 
   const searchTemperature = () => {
+    if (searchQuery.trim() === "") {
+      alert("Debes ingresar un valor en el campo de búsqueda");
+      return;
+    }
     fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchQuery}?unitGroup=metric&key=${api_key}`
     )
@@ -152,183 +156,102 @@ const HorasMundo = ({ onSaveSearch }) => {
         </button>
       </div>
 
-      {/* <RealTimeClock></RealTimeClock> */}
-      <div>
-        {/*  <div className='citysearch'>
-          <h2 className='city'>{location.split("/")[1]}</h2>
-          <h4 className='fechatitulo'>{formattedTime}</h4>
-        </div> */}
-        {/*  <thead>
-          <tr className='prediction'>
-            <th>Día</th>
-            <th>Hora</th>
-            <th>Día de la semana</th>
-            <th>Temperatura</th> */}
-        {/*   <th>Sensación térmica</th>
-        <th>Probabilidad de lluvia</th> */}
-        {/*  <th>Humedad</th>
-            <th>Condiciones</th>
-            <p>{weatherCondition}</p>
-              <th>Descripción</th> 
-          <th>Amanecer</th>
-            <th>Atardecer</th>
-          </tr>
-        </thead> */}
-        {/* <div className='predictiontemp'>
-          <div className='citysearch'>
-            <h2 className='city'>{location.split("/")[1]}</h2>
-            
+      {predictions.slice(0, 1).map((prediction, index) => (
+        <div key={index}>
+          <div
+            className={`iconostiempo ${
+              weatherCondition === "Clear" ? "sunny" : ""
+            }`}
+          >
+            {prediction.conditions === "Clear" ? (
+              <div icon='sunny'>
+                <span className='sun'></span>
+              </div>
+            ) : prediction.conditions === "Overcast" ||
+              prediction.conditions === "cloudy" ||
+              prediction.conditions.includes(
+                "cloudy",
+                "partically",
+                "Overcast"
+              ) ? (
+              <div icon='cloudy'>
+                <span className='cloud'></span>
+                <span className='cloud'></span>
+              </div>
+            ) : prediction.conditions === "Snow" ? (
+              <div icon='snowy'>
+                <span className='snowman'></span>
+              </div>
+            ) : prediction.conditions === "Thunderstorm" ||
+              prediction.conditions === "Rain" ||
+              prediction.conditions.includes("Rain") ? (
+              <div icon='stormy'>
+                <span className='cloud'></span>
+              </div>
+            ) : (
+              <div icon='default'>
+                <div icon='supermoon'>
+                  <span className='moon'></span>
+                  <span className='meteor'></span>
+                </div>
+              </div>
+            )}
           </div>
-        </div> */}
-        {predictions.slice(0, 1).map((prediction, index) => (
-          <div key={index}>
-            {/* <div className='fecha'>{prediction.datetime}</div> */}
-            {/* <div className='diasemana'>
+
+          <div className='date-container'>
+            <span className='location'>{location.split("/")[1]}</span>
+            <h2 className='date-dayname'>
               {getDayOfWeekName(new Date(prediction.datetime).getDay())}
-            </div> */}
-            {/* <div className='temperatura'>{prediction.tempmax}ºC</div> */}
-            <div
-              className={`iconostiempo ${
-                weatherCondition === "Clear" ? "sunny" : ""
-              }`}
-            >
-              {prediction.conditions === "Clear" ? (
-                <div icon='sunny'>
-                  <span className='sun'></span>
-                </div>
-              ) : prediction.conditions === "Overcast" ||
-                prediction.conditions === "cloudy" ||
-                prediction.conditions.includes(
-                  "cloudy",
-                  "partically",
-                  "Overcast"
-                ) ? (
-                <div icon='cloudy'>
-                  <span className='cloud'></span>
-                  <span className='cloud'></span>
-                </div>
-              ) : prediction.conditions === "Snow" ? (
-                <div icon='snowy'>
-                  <span className='snowman'></span>
-                </div>
-              ) : prediction.conditions === "Thunderstorm" ||
-                prediction.conditions === "Rain" ||
-                prediction.conditions.includes("Rain") ? (
-                <div icon='stormy'>
-                  <span className='cloud'></span>
-                </div>
-              ) : (
-                <div icon='default'>
-                  <div icon='supermoon'>
-                    <span className='moon'></span>
-                    <span className='meteor'></span>
-                  </div>
-                </div>
-              )}
+            </h2>
+            <span className='date-day'>{prediction.datetime}</span>
+          </div>
+          <div className='weather-container'>
+            <h1 className='weather-temp'>{prediction.tempmax}ºC</h1>
+          </div>
+          <div className='dos_horas'>
+            <div className='weather-desc1'>
+              <RealTimeClock />{" "}
             </div>
-            {/* <div className='lasdoshoras'>
-              <RealTimeClock />
-              <div className='containerrelojtitulo2'>
-                <h1 className='city'>{location.split("/")[1]}</h1>
-                <div className='containerreloj2'>
-                  <h2 className='hora'>{formattedTime}</h2>
-                </div>
+            <div className='weather-desc2'>
+              <h5>{location.split("/")[1]}</h5>
+              <h4>{formattedTime}</h4>
+            </div>
+          </div>
+          <div className='today-info-container'>
+            <div className='today-info'>
+              <div className='wind'>
+                <span className='title'>Sensacion térmica</span>
+                <span className='value'> {prediction.feelslike}ºC</span>
+                <div className='clear'></div>
               </div>
-            </div> */}
-            {/*  <div className='condiciones'>{prediction.conditions}</div>
-            <div className='sensacion'>Sensación térmicacº</div>
-            <div className='precipitaciones'>
-              Probabilidad de lluvia {prediction.precipprob}%
-            </div>
-            <div className='humedad'>Humedad {prediction.humidity}%</div>*/}
-            {/* <td>{prediction.description}</td> */}
-            {/* <td>{prediction.sunrise}</td>
-              <td>{prediction.sunset}</td> */}
-            <div className='date-container'>
-              <span className='location'>{location.split("/")[1]}</span>
-              <h2 className='date-dayname'>
-                {getDayOfWeekName(new Date(prediction.datetime).getDay())}
-              </h2>
-              <span className='date-day'>{prediction.datetime}</span>
-            </div>
-            <div className='weather-container'>
-              <h1 className='weather-temp'>{prediction.tempmax}ºC</h1>
-            </div>
-            {/* <h3 className='weather-desc'>{prediction.conditions}</h3> */}
-            <div className='dos_horas'>
-              <div className='weather-desc1'>
-                <RealTimeClock />{" "}
+              <div className='precipitation'>
+                <span className='title'>Precipitaciones</span>
+                <span className='value'> {prediction.precipprob} %</span>
+                <div className='clear'></div>
               </div>
-              <div className='weather-desc2'>
-                <h5>{location.split("/")[1]}</h5>
-                <h4>{formattedTime}</h4>
-              </div>
-            </div>
-            <div className='today-info-container'>
-              <div className='today-info'>
-                <div className='wind'>
-                  <span className='title'>Sensacion térmica</span>
-                  <span className='value'> {prediction.feelslike}ºC</span>
-                  <div className='clear'></div>
-                </div>
-                <div className='precipitation'>
-                  <span className='title'>Precipitaciones</span>
-                  <span className='value'> {prediction.precipprob} %</span>
-                  <div className='clear'></div>
-                </div>
-                <div className='humidity'>
-                  <span className='title'>Humedad</span>
-                  <span className='value'> {prediction.humidity} %</span>
-                  <div className='clear'></div>
-                </div>
+              <div className='humidity'>
+                <span className='title'>Humedad</span>
+                <span className='value'> {prediction.humidity} %</span>
+                <div className='clear'></div>
               </div>
             </div>
           </div>
-        ))}
-        {/*  <p className='predictionnextdays'>Próximos días</p>
-        <tbody className='prediction'>
-          {predictions.slice(1).map((prediction, index) => (
-            <tr key={index} className='card'> */}
-        {/* <td>{prediction.datetime}</td>
-              <td>
-                {getDayOfWeekName(new Date(prediction.datetime).getDay())}
-              </td>
-              <td className='temperaturacard'>{prediction.tempmax}ºC</td>
-              <td className='sensacioncard'>{prediction.feelslike}ºC</td>
-              <td className='precipitacionescard'>{prediction.precipprob}%</td>
-              <td className='humedadcard'>{prediction.humidity}%</td>
-              <td className='condicionescard'>{prediction.conditions}</td>
-              <td>{prediction.description}</td>
-              <td className='sunrise'>{prediction.sunrise}</td>
-              <td className='sunset'>{prediction.sunset}</td> */}
-        {/*  <div className='week-container'>
-                <ul className='week-list'>
-                  <li className='active'>
-                    <span className='day-name'>
-                      {getDayOfWeekName(new Date(prediction.datetime).getDay())}
-                    </span>
-                    <span className='day-temp'>{prediction.tempmax}°C</span>
-                  </li>
-                  <div className='clear'></div>
-                </ul>
-              </div>
-            </tr>
-          ))}
-        </tbody> */}
-        <div className='prediction'>
-          <div className='card'>
-            <div className='week-container'>
-              <ul className='week-list'>
-                {predictions.slice(1, 6).map((prediction, index) => (
-                  <li key={index} className='active'>
-                    <span className='day-name'>
-                      {getDayOfWeekName(new Date(prediction.datetime).getDay())}
-                    </span>
-                    <span className='day-temp'>{prediction.tempmax}°C</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        </div>
+      ))}
+
+      <div className='prediction'>
+        <div className='card'>
+          <div className='week-container'>
+            <ul className='week-list'>
+              {predictions.slice(1, 6).map((prediction, index) => (
+                <li key={index} className='active'>
+                  <span className='day-name'>
+                    {getDayOfWeekName(new Date(prediction.datetime).getDay())}
+                  </span>
+                  <span className='day-temp'>{prediction.tempmax}°C</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

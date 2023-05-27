@@ -7,7 +7,7 @@ import "../css/Login.scss";
 import Buscador from "./Buscador";
 import RealTimeClock from "./RealTimeClock";
 
-const Home = ({ user, searches }) => {
+const Home = (user) => {
   // Agrega la prop searches para recibir las búsquedas guardadas
   const navigate = useNavigate();
 
