@@ -1,5 +1,5 @@
 .containerbuscador {
-  margin-top: -110px;
+  margin-top: -87px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -11,7 +11,7 @@
   border-radius: 10px;
   border: none;
   padding: 10px;
-  margin-top: -70px;
+  margin-top: 136px;
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.5);
@@ -713,7 +713,7 @@ body {
 
 .date-container {
   position: absolute;
-  top: 65px;
+  top: 95px;
   left: 25px;
 }
 
@@ -744,7 +744,7 @@ body {
 
 .weather-container {
   position: absolute;
-  bottom: 357px;
+  bottom: 336px;
   left: 45px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -837,7 +837,7 @@ body {
 
 .week-list > li {
   float: left;
-  padding: 15px;
+  padding: 7px;
   cursor: pointer;
   -webkit-transition: 200ms ease;
   -o-transition: 200ms ease;
@@ -862,7 +862,6 @@ body {
 }
 
 .week-list > li .day-name {
-  display: block;
   margin: 10px 0 0 0;
   text-align: center;
 }

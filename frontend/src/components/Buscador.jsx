@@ -267,17 +267,17 @@ const HorasMundo = ({ onSaveSearch }) => {
             <div className='today-info-container'>
               <div className='today-info'>
                 <div className='wind'>
-                  <span className='title'>sensacion térmica</span>
+                  <span className='title'>Sensacion térmica</span>
                   <span className='value'> {prediction.feelslike}ºC</span>
                   <div className='clear'></div>
                 </div>
                 <div className='precipitation'>
-                  <span className='title'>precipitaciones</span>
+                  <span className='title'>Precipitaciones</span>
                   <span className='value'> {prediction.precipprob} %</span>
                   <div className='clear'></div>
                 </div>
                 <div className='humidity'>
-                  <span className='title'>humedad</span>
+                  <span className='title'>Humedad</span>
                   <span className='value'> {prediction.humidity} %</span>
                   <div className='clear'></div>
                 </div>
@@ -319,7 +319,7 @@ const HorasMundo = ({ onSaveSearch }) => {
           <div className='card'>
             <div className='week-container'>
               <ul className='week-list'>
-                {predictions.slice(1, 5).map((prediction, index) => (
+                {predictions.slice(1, 6).map((prediction, index) => (
                   <li key={index} className='active'>
                     <span className='day-name'>
                       {getDayOfWeekName(new Date(prediction.datetime).getDay())}

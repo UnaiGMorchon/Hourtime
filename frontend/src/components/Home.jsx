@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./Firebase";
 import { useNavigate } from "react-router-dom";
@@ -28,12 +28,27 @@ const Home = ({ user, searches }) => {
     return username;
   };
 
+  useEffect(() => {
+    const burger = document.querySelector(".burger-container");
+    const header = document.querySelector(".header");
+
+    const handleClick = () => {
+      header.classList.toggle("menu-opened");
+    };
+
+    burger.addEventListener("click", handleClick);
+
+    return () => {
+      burger.removeEventListener("click", handleClick);
+    };
+  }, []);
+
   return (
     <div className='home'>
       <>
         <nav>
-          <p className='loginhome'>
-            {/* Welcome Home  */}
+          {/*  <p className='loginhome'>
+            Welcome Home
             {user ? getUsername(user.email) : "Invitado"}
           </p>
           <div className='loginboton'>
@@ -42,8 +57,41 @@ const Home = ({ user, searches }) => {
             ) : (
               <button onClick={() => navigate("/login")}>Login</button>
             )}
-          </div>
+          </div> */}
           <Buscador />
+          <div>
+            <p className='nombre'>Nimbus</p>
+            <div className='window'>
+              <div className='header'>
+                <div className='burger-container'>
+                  <div id='burger'>
+                    <div className='nombre'>Nimbus</div>
+                    <div className='bar topBar'></div>
+                    <div className='bar btmBar'></div>
+                  </div>
+                </div>
+                <div className='icon icon-apple'></div>
+                <ul className='menu'>
+                  <li className='menu-item'>
+                    <a>{user ? getUsername(user.email) : "Invitado"}</a>
+                  </li>
+                  <li className='menu-item'>
+                    <div className='loginboton'>
+                      <a>
+                        {user ? (
+                          <button onClick={handleLogout}>Logout</button>
+                        ) : (
+                          <button onClick={() => navigate("/login")}>
+                            Login
+                          </button>
+                        )}
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </nav>
       </>
       {/* <h1>Home</h1>
