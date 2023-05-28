@@ -87,6 +87,12 @@ const Home = ({ user, searchHistory }) => {
                         )}
                       </a>
                     </div>
+                    <p>Saved Searches:</p>
+                    {/*  <ul>
+                        {searchHistory.map((search, index) => (
+                          <li key={index}>{search.location}</li>
+                        ))}
+                      </ul> */}
                   </li>
                 </ul>
               </div>
@@ -118,19 +124,6 @@ const Home = ({ user, searchHistory }) => {
           <span className='meteor'></span>
         </div> */}
       </div>
-
-      {/* <h2>Saved Searches:</h2>
-      <ul>
-        {searches.map((search, index) => (
-          <li key={index}>{search.location}</li>
-        ))}
-      </ul> */}
-      <h2>Saved Searches:</h2>
-      <ul>
-        {searchHistory.map((search, index) => (
-          <li key={index}>{search.location}</li>
-        ))}
-      </ul>
     </div>
   );
 };

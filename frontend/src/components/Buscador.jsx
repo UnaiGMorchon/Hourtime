@@ -18,6 +18,8 @@ const HorasMundo = () => {
   const [weatherCondition, setWeatherCondition] = useState(""); // Nueva variable para la condición meteorológica
   const [searchHistory, setSearchHistory] = useState([]); // Historial de búsquedas
   const [defaultLocation, setDefaultLocation] = useState("madrid"); // Ubicación por defecto
+  const [displayMode, setDisplayMode] = useState("day");
+  const [backgroundClass, setBackgroundClass] = useState("background-day");
 
   useEffect(() => {
     if (timeZone === "") return;
@@ -28,7 +30,7 @@ const HorasMundo = () => {
         );
         if (response.ok) {
           const data = await response.json();
-          setHours(data);
+          setHours(data); // Actualizar el estado con los datos de la API
           setLocation(data.timezone);
 
           console.log("data:", data);
@@ -43,35 +45,40 @@ const HorasMundo = () => {
       }
     };
 
-    searchHours();
+    searchHours(); // Llamar a la función de búsqueda de horas del mundo
     // Actualizar la fecha y hora cada 10 minutos
     const intervalId = setInterval(() => {
-      const updatedTime = new Date();
+      // Actualizar la fecha y hora cada 10 minutos
+      const updatedTime = new Date(); //  Crear un nuevo objeto Date
 
       // Sumar un segundo al objeto Date
       setFormattedTime(
+        //  Crear un  nuevo objeto Date en  el estado
         updatedTime.toLocaleTimeString("en-US", {
-          timeZone: timeZone,
-          hour12: false,
+          //  Formatear la hora
+          timeZone: timeZone, //  Zona horaria  del usuario
+          hour12: false, // No  usar formato 12h  (AM/PM)
         })
       );
     }, 1000);
 
     return () => {
-      clearInterval(intervalId);
+      //     Limpiar el intervalo  cuando el componente se desmonte
+      clearInterval(intervalId); //   Limpiar el intervalo  cuando el componente se desmonte
     };
   }, [timeZone]);
 
   useEffect(() => {
+    //  Actualizar la hora cada segundo
     if (currentTime === "") return;
-    console.log("currentTime:", currentTime);
+    console.log("currentTime:", currentTime); //  Actualizar la hora cada segundo
     const hours = currentTime.getHours().toString().padStart(2, "0");
     const minutes = currentTime.getMinutes().toString().padStart(2, "0");
     const seconds = currentTime.getSeconds().toString().padStart(2, "0");
 
-    const timeString = `${hours}:${minutes}:${seconds}`;
+    const timeString = `${hours}:${minutes}:${seconds}`; //  Actualizar la hora cada segundo
     setFormattedTime(timeString);
-  }, [currentTime]);
+  }, [currentTime]); // current Time  es una dependencia  del useEffect
 
   function getDayOfWeekName(dayOfWeek) {
     const daysOfWeek = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
@@ -90,7 +97,7 @@ const HorasMundo = () => {
         const data = await response.json();
         setPredictions(data.days);
         setLocation(data.address);
-        setTimeZone(data.timezone);
+        setTimeZone(data.timezone); //    Actualizar el estado con los datos de la API
         setWeatherCondition(data.currentConditions.conditions);
         console.log("weatherCondition:", data.currentConditions.conditions);
       } else {
