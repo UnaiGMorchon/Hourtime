@@ -125,12 +125,12 @@ const Home = ({ user, searchHistory }) => {
           <li key={index}>{search.location}</li>
         ))}
       </ul> */}
-      {/* <h2>Saved Searches:</h2>
+      <h2>Saved Searches:</h2>
       <ul>
         {searchHistory.map((search, index) => (
           <li key={index}>{search.location}</li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 };

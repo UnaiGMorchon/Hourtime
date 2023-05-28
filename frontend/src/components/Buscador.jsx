@@ -8,8 +8,8 @@ const HorasMundo = () => {
   // Agrega una prop onSaveSearch para guardar las búsquedas
   const navigate = useNavigate();
   const [hours, setHours] = useState([]);
-  const [location, setLocation] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [location, setLocation] = useState(""); //  Variable para almacenar la ubicación
+  const [searchQuery, setSearchQuery] = useState("Madrid"); //  Variable para almacenar la búsqueda
   const [timeZone, setTimeZone] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [dayOfWeekName, setDayOfWeekName] = useState("");
@@ -17,6 +17,7 @@ const HorasMundo = () => {
   const [formattedTime, setFormattedTime] = useState(""); // Variable para almacenar la hora formateada
   const [weatherCondition, setWeatherCondition] = useState(""); // Nueva variable para la condición meteorológica
   const [searchHistory, setSearchHistory] = useState([]); // Historial de búsquedas
+  const [defaultLocation, setDefaultLocation] = useState("madrid"); // Ubicación por defecto
 
   useEffect(() => {
     if (timeZone === "") return;
@@ -80,33 +81,52 @@ const HorasMundo = () => {
 
   const api_key = "2SUUALUWUSYC86JWSJG272GDC";
 
+  const searchLocation = async (query) => {
+    try {
+      const response = await fetch(
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${query}?unitGroup=metric&key=${api_key}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setPredictions(data.days);
+        setLocation(data.address);
+        setTimeZone(data.timezone);
+        setWeatherCondition(data.currentConditions.conditions);
+        console.log("weatherCondition:", data.currentConditions.conditions);
+      } else {
+        console.error("Error:", response.status);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    searchLocation(defaultLocation);
+  }, []);
+
   const searchTemperature = () => {
     if (searchQuery.trim() === "") {
       alert("Debes ingresar un valor en el campo de búsqueda");
       return;
     }
-    fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${searchQuery}?unitGroup=metric&key=${api_key}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setPredictions(data.days);
-        setLocation(data.address);
-        setTimeZone(data.timezone);
-        setWeatherCondition(data.currentConditions.conditions); // Guarda la condición meteorológica actual
-        console.log("weatherCondition:", data.currentConditions.conditions); // Agrega este console.log
-      });
+    searchLocation(searchQuery);
   };
 
-  /*  const saveSearch = (search) => {
+  // -------------- salvar historial busquedas --------------------------------
+
+  const saveSearch = (search) => {
+    // Recibe un objeto con la búsqueda
     setSearchHistory((prevSearchHistory) => {
-      const updatedSearchHistory = [...prevSearchHistory, search];
-      console.log("updatedSearchHistory:", updatedSearchHistory);
+      // Actualizar el estado de la búsqueda
+      const updatedSearchHistory = [...prevSearchHistory, search]; // Agregar la búsqueda al historial  de búsquedas
+      console.log("updatedSearchHistory:", updatedSearchHistory); //  Agregar este console.log  para ver el historial de búsquedas
       localStorage.setItem(
+        // es la  API de almacenamiento local de JavaScript
         "searchHistory",
-        JSON.stringify(updatedSearchHistory)
+        JSON.stringify(updatedSearchHistory) // Clave para guardar  el historial de búsqueda
       );
-      return updatedSearchHistory;
+      return updatedSearchHistory; //   Actualizar el estado de la búsqueda
     });
   };
 
@@ -124,7 +144,7 @@ const HorasMundo = () => {
       // Si hay un historial de búsqueda
       setSearchHistory(JSON.parse(storedSearchHistory)); // Actualizar el estado de la búsqueda
     }
-  }, []); // Solo se ejecuta una vez */
+  }, []); // Solo se ejecuta una vez
 
   const getBackgroundImage = () => {
     const condition = weatherCondition.toLowerCase(); // Convertir a minúsculas
