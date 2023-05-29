@@ -8,44 +8,54 @@ import Buscador from "./Buscador";
 //import RealTimeClock from "./RealTimeClock";
 
 const Home = ({ user }) => {
-  const [searchHistory, setSearchHistory] = useState(getSearchHistory());
+  // Agrega la prop user para recibir el usuario logueado
+  const [searchHistory, setSearchHistory] = useState(getSearchHistory()); // Agrega la prop searchHistory para recibir el historial de búsquedas
   // Agrega la prop searches para recibir las búsquedas guardadas
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Agrega la prop navigate para navegar entre páginas
 
   const handleLogout = () => {
-    signOut(auth)
+    // Agrega la función handleLogout para desloguear al usuario
+    signOut(auth) // Desloguea al usuario de Firebase
       .then(() => {
-        // Sign-out successful.
-        navigate("/");
-        console.log("Signed out successfully");
+        // Si se desloguea correctamente
+
+        navigate("/"); // Navega a la página de inicio
+        console.log("Signed out successfully"); // Muestra un mensaje en la consola
       })
       .catch((error) => {
+        //  Si ocurre un error  al desloguear al usuario
         // An error happened.
       });
   };
 
   const getUsername = (email) => {
-    const username = email.split("@")[0];
-    return username;
+    // Agrega la función getUsername para obtener el nombre de usuario
+    const username = email.split("@")[0]; // Obtiene el nombre de usuario a partir del email
+    return username; // Devuelve el nombre de usuario obtenido
   };
 
   useEffect(() => {
-    const burger = document.querySelector(".burger-container");
-    const header = document.querySelector(".header");
+    // Agrega el hook useEffect para ejecutar código al renderizar el componente
+    const burger = document.querySelector(".burger-container"); // Obtiene el elemento con la clase .burger-container
+    const header = document.querySelector(".header"); //  Obtiene el elemento con la clase .header
 
     const handleClick = () => {
-      header.classList.toggle("menu-opened");
+      // Agrega la función handleClick para manejar el evento click en el botón de menú
+      header.classList.toggle("menu-opened"); // Agrega o remueve la clase .menu-opened al elemento con la clase .header
     };
 
-    burger.addEventListener("click", handleClick);
+    burger.addEventListener("click", handleClick); // Agrega el evento click al botón de menú
 
     return () => {
-      burger.removeEventListener("click", handleClick);
+      // Agrega el return para remover el evento click al botón de menú
+      burger.removeEventListener("click", handleClick); //  Remueve el evento click al botón de menú
     };
   }, []);
 
   function getSearchHistory() {
-    const searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    // Agrega la función getSearchHistory para obtener el historial de búsquedas
+    const searchHistory = //  Obtiene el historial de búsquedas del localStorage
+      JSON.parse(localStorage.getItem("searchHistory")) || []; //   Si no hay historial de búsquedas, devuelve un array vacío
     return searchHistory;
   }
 
@@ -53,20 +63,9 @@ const Home = ({ user }) => {
     <div className='home'>
       <>
         <nav>
-          {/*  <p className='loginhome'>
-            Welcome Home
-            {user ? getUsername(user.email) : "Invitado"}
-          </p>
-          <div className='loginboton'>
-            {user ? (
-              <button onClick={handleLogout}>Logout</button>
-            ) : (
-              <button onClick={() => navigate("/login")}>Login</button>
-            )}
-          </div> */}
           <Buscador />
           <div>
-            <p className='nombre'>Nimbus</p>
+            <p className='nombre'></p>
             <div className='window'>
               <div className='header'>
                 <div className='burger-container'>
@@ -79,15 +78,18 @@ const Home = ({ user }) => {
                 <div className='icon icon-apple'></div>
                 <ul className='menu'>
                   <li className='menu-item'>
-                    <a>{user ? getUsername(user.email) : "Invitado"}</a>
+                    <a>{user ? getUsername(user.email) : "Invitado"}</a>{" "}
+                    {/* // Muestra el nombre de usuario si está logueado, sino muestra "Invitado" */}
                   </li>
                   <li className='menu-item'>
                     <div className='loginboton'>
                       <a>
                         {user ? (
-                          <button onClick={handleLogout}>Logout</button>
+                          <button onClick={handleLogout}>Logout</button> // Si está logueado, muestra el botón de logout
                         ) : (
                           <button onClick={() => navigate("/login")}>
+                            {" "}
+                            {/* // Si no está logueado, muestra el botón de login */}
                             Login
                           </button>
                         )}
@@ -95,9 +97,14 @@ const Home = ({ user }) => {
                     </div>
                     <p>Saved Searches:</p>
                     <ul>
-                      {searchHistory.map((search, index) => (
-                        <li key={index}>{search.location}</li>
-                      ))}
+                      {searchHistory.map(
+                        (
+                          search,
+                          index //  Muestra el historial de búsquedas
+                        ) => (
+                          <li key={index}>{search.location}</li> // Muestra la ubicación de la búsqueda en el historial
+                        )
+                      )}
                     </ul>
                   </li>
                 </ul>
@@ -106,30 +113,6 @@ const Home = ({ user }) => {
           </div>
         </nav>
       </>
-      {/* <h1>Home</h1>
-      <p>This is Home page</p> */}
-      <div>
-        {/* <div icon='sunny' >
-          <span className='sun'></span>
-        </div> */}
-        {/* <div icon='cloudy'>
-          <span className='cloud'></span>
-          <span className='cloud'></span>
-        </div>
-        <RealTimeClock /> */}
-        {/* <div icon='snowy' >
-          <span className='snowman'></span>
-        </div>
-
-        <div icon='stormy' >
-          <span className='cloud'></span>
-        </div>
- */}
-        {/* <div icon='supermoon' >
-          <span className='moon'></span>
-          <span className='meteor'></span>
-        </div> */}
-      </div>
     </div>
   );
 };
