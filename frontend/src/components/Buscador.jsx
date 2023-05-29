@@ -19,8 +19,8 @@ const HorasMundo = () => {
   const [searchHistory, setSearchHistory] = useState([]); // Historial de búsquedas
   const [defaultLocation, setDefaultLocation] = useState("madrid"); // Ubicación por defecto
   const [displayMode, setDisplayMode] = useState("day");
-  const [backgroundClass, setBackgroundClass] = useState("background-day");
-
+  /*   const [backgroundClass, setBackgroundClass] = useState("background-day");
+   */
   useEffect(() => {
     if (timeZone === "") return;
     const searchHours = async () => {
@@ -99,6 +99,12 @@ const HorasMundo = () => {
         setLocation(data.address);
         setTimeZone(data.timezone); //    Actualizar el estado con los datos de la API
         setWeatherCondition(data.currentConditions.conditions);
+        saveSearch({
+          location: searchQuery,
+          predictions: data.days,
+          date: data.datetime,
+        });
+
         console.log("weatherCondition:", data.currentConditions.conditions);
       } else {
         console.error("Error:", response.status);
@@ -126,6 +132,19 @@ const HorasMundo = () => {
     // Recibe un objeto con la búsqueda
     setSearchHistory((prevSearchHistory) => {
       // Actualizar el estado de la búsqueda
+      if (prevSearchHistory.length === 0) {
+        prevSearchHistory = localStorage.getItem("searchHistory") || "[]"; //  Obtener el historial de búsquedas del almacenamiento local
+        prevSearchHistory = JSON.parse(prevSearchHistory);
+      }
+      const existingSearch = prevSearchHistory.find((item) => {
+        return (
+          item.location.toLowerCase() === search.location.toLowerCase() &&
+          item.date === search.date
+        );
+      });
+      if (existingSearch) {
+        return prevSearchHistory;
+      }
       const updatedSearchHistory = [...prevSearchHistory, search]; // Agregar la búsqueda al historial  de búsquedas
       console.log("updatedSearchHistory:", updatedSearchHistory); //  Agregar este console.log  para ver el historial de búsquedas
       localStorage.setItem(
@@ -137,21 +156,7 @@ const HorasMundo = () => {
     });
   };
 
-  useEffect(() => {
-    // Recuperar el historial de búsqueda
-    const user = auth.currentUser; // Obtener el usuario logeado
-    if (user) {
-      // Si hay un usuario logeado
-      // Guardar la búsqueda solo si hay un usuario logeado
-      saveSearch({ location: searchQuery, predictions: [] });
-    }
-    // Al recuperar el historial de búsqueda
-    const storedSearchHistory = localStorage.getItem("searchHistory");
-    if (storedSearchHistory) {
-      // Si hay un historial de búsqueda
-      setSearchHistory(JSON.parse(storedSearchHistory)); // Actualizar el estado de la búsqueda
-    }
-  }, []); // Solo se ejecuta una vez
+  // ----------------------------------------------
 
   const getBackgroundImage = () => {
     const condition = weatherCondition.toLowerCase(); // Convertir a minúsculas

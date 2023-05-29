@@ -7,7 +7,8 @@ import "../css/Login.scss";
 import Buscador from "./Buscador";
 //import RealTimeClock from "./RealTimeClock";
 
-const Home = ({ user, searchHistory }) => {
+const Home = ({ user }) => {
+  const [searchHistory, setSearchHistory] = useState(getSearchHistory());
   // Agrega la prop searches para recibir las búsquedas guardadas
   const navigate = useNavigate();
 
@@ -42,6 +43,11 @@ const Home = ({ user, searchHistory }) => {
       burger.removeEventListener("click", handleClick);
     };
   }, []);
+
+  function getSearchHistory() {
+    const searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    return searchHistory;
+  }
 
   return (
     <div className='home'>
@@ -88,11 +94,11 @@ const Home = ({ user, searchHistory }) => {
                       </a>
                     </div>
                     <p>Saved Searches:</p>
-                    {/*  <ul>
-                        {searchHistory.map((search, index) => (
-                          <li key={index}>{search.location}</li>
-                        ))}
-                      </ul> */}
+                    <ul>
+                      {searchHistory.map((search, index) => (
+                        <li key={index}>{search.location}</li>
+                      ))}
+                    </ul>
                   </li>
                 </ul>
               </div>
